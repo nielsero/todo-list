@@ -6,7 +6,7 @@ import bindEventListeners from "./modules/bindEventListeners";
 
 // Initialization
 export const projectManager = new ProjectManager(); // exported to be used by the event listeners
-const defaultProject = new Project("default");
+// const defaultProject = new Project("default");
 // projectManager.addProject(defaultProject);
 // projectManager.changeActiveProjectTo("default");
 
@@ -17,17 +17,16 @@ const third = new TodoItem("third todo", "description of third todo", new Date()
 const fourth = new TodoItem("fourth todo", "description of fourth todo", new Date(), 1);
 
 const otherProject = new Project("other");
-defaultProject.addTodo(first);
-defaultProject.addTodo(second);
+projectManager.defaultProject.addTodo(first);
+projectManager.defaultProject.addTodo(second);
 
 otherProject.addTodo(third);
 otherProject.addTodo(fourth);
 
-projectManager.addProject(defaultProject);
 projectManager.addProject(otherProject);
-projectManager.changeActiveProjectTo("default");
 
 renderProjects(projectManager.projects);
+console.log(projectManager.projects);
 renderTodos(projectManager.activeProject.todos);
 
 bindEventListeners();

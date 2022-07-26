@@ -23,9 +23,14 @@ function renderTodos(todos) {
 function createProjectElement(project) {
     const projectElement = document.createElement("div");
     projectElement.classList.add("project");
+    console.log(project.name);
+    projectElement.setAttribute("data-project", project.name);
+    // added data attribute to help with event listeners recognition
 
     const projectName = createParagraph(project.name);
     projectName.classList.add("project__name");
+    const buttonsContainer = document.createElement("div");
+    buttonsContainer.classList.add("project__buttons-container");
     const editButton = createButton("Edit");
     editButton.classList.add("project__edit-button");
     editButton.setAttribute("data-project", project.name);
@@ -33,7 +38,8 @@ function createProjectElement(project) {
     deleteButton.classList.add("project__delete-button");
     deleteButton.setAttribute("data-project", project.name);
 
-    appendChildren(projectElement, [projectName, editButton, deleteButton]);
+    appendChildren(buttonsContainer, [editButton, deleteButton]);
+    appendChildren(projectElement, [projectName, buttonsContainer]);
     return projectElement;
 }
 
@@ -46,17 +52,21 @@ function createTodoElement(todo, index) {
     const todoFinished = document.createElement("input");
     todoFinished.type = "checkbox";
     const todoTitle = createParagraph(todo.title);
+    todoTitle.classList.add("todo__title");
     const todoDate = createParagraph(todo.formattedDueDate);
+    const buttonsContainer = document.createElement("div");
     const editButton = createButton("Edit");
     editButton.setAttribute("data-todo", index);
     const deleteButton = createButton("Delete");
     deleteButton.setAttribute("data-todo", index);
     const seeMoreButton = createButton("See more");
-    const mainElements = [todoFinished, todoTitle, todoDate, editButton, deleteButton, seeMoreButton];
+    seeMoreButton.setAttribute("data-todo", index);
+    const mainElements = [todoFinished, todoTitle, todoDate, buttonsContainer];
+    appendChildren(buttonsContainer, [editButton, deleteButton, seeMoreButton]);
     appendChildren(mainPart, mainElements);
     
     const extraPart = document.createElement("div");
-    extraPart.classList.add(todo__extra);
+    extraPart.classList.add("todo__extra");
     const description = createParagraph(todo.description);
     const priority = createParagraph(todo.priority);
     const closeButton = createButton("Close");

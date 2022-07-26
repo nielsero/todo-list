@@ -1,27 +1,33 @@
-import TodoItem from "./modules/todoItem";
 import Project from "./modules/project";
 import ProjectManager from "./modules/projectManager";
+import TodoItem from "./modules/todoItem";
 import { renderProjects, renderTodos } from "./modules/render";
-import { format } from "date-fns";
+import bindEventListeners from "./modules/bindEventListeners";
 
-// const today = new Date();
-// console.log(format(today, "dd-MM-yyyy"));
-
-const projectManager = new ProjectManager();
+// Initialization
+export const projectManager = new ProjectManager(); // exported to be used by the event listeners
 const defaultProject = new Project("default");
-const exampleTodo = new TodoItem("my todo", "this is an example todo", new Date(), 1);
-const otherTodo = new TodoItem("other todo", "this is another todo", new Date(), 2);
+// projectManager.addProject(defaultProject);
+// projectManager.changeActiveProjectTo("default");
 
-projectManager.addProject(defaultProject);
-defaultProject.addTodo(exampleTodo);
-defaultProject.addTodo(otherTodo);
+// Demo todos
+const first = new TodoItem("first todo", "description of first todo", new Date(), 1);
+const second = new TodoItem("second todo", "description of second todo", new Date(), 2);
+const third = new TodoItem("third todo", "description of third todo", new Date(), 1);
+const fourth = new TodoItem("fourth todo", "description of fourth todo", new Date(), 1);
 
 const otherProject = new Project("other");
-const demoProject = new Project("demo");
+defaultProject.addTodo(first);
+defaultProject.addTodo(second);
 
+otherProject.addTodo(third);
+otherProject.addTodo(fourth);
+
+projectManager.addProject(defaultProject);
 projectManager.addProject(otherProject);
-projectManager.addProject(demoProject);
+projectManager.changeActiveProjectTo("default");
 
-renderProjects([... projectManager.projects]);
+renderProjects(projectManager.projects);
+renderTodos(projectManager.activeProject.todos);
 
-renderTodos([... defaultProject.todos]);
+bindEventListeners();

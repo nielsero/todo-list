@@ -10,119 +10,125 @@
   <!-- <script src="main.js" defer></script> -->
 </head>
 <body>
-  <header class="header">
-    <h1 class="header__title">Todo or not Todo?</h1>
-    <button class="header__projects-button"><i class="bx bx-menu"></i></button>
-  </header>
+  <div class="body__upper">
+    <header class="header">
+      <h1 class="header__title">Todo or not Todo?</h1>
+      <button class="header__projects-button"><i class="bx bx-menu"></i></button>
+    </header>
 
-  <main class="content">
-    <section class="projects-and-edit-container">
-      <h2 class="projects__title">Projects</h2>
-      <div class="projects">
-        <div class="project">
-          <p class="project__title">Dummy Project 1</p>
-          <div class="project__buttons">
-            <button class="project__edit-button"><i class='bx bxs-edit' ></i></button>
-            <button class="project__delete-button"><i class='bx bxs-trash-alt'></i></button>
-          </div>
-        </div>
-
-        <div class="project">
-          <p class="project__title">Dummy Project 2</p>
-          <div class="project__buttons">
-            <button class="project__edit-button"><i class='bx bxs-edit' ></i></button>
-            <button class="project__delete-button"><i class='bx bxs-trash-alt'></i></button>
-          </div>
-        </div>
-      </div>
-
-      <button class="project__add-button">Add project <i class='bx bx-plus'></i></button>
-
-      <form class="project-edit">
-        <input class="project-edit__input" id="project-name-input"
-          placeholder="Enter project name..." type="text">
-        <div class="project-edit__buttons">
-          <button class="project-edit__confirm-button" type="button"><i class='bx bx-check'></i></button>
-          <button class="project-edit__cancel-button" type="button"><i class='bx bx-x'></i></button>
-        </div>
-      </form>
-    </section>
-
-    <section class="todos-and-edit-container">
-      <h2 class="todos__project-title">Dummy Project 1</h2>
-
-      <div class="todos">
-        <div class="todo">
-          <div class="todo__main">
-            <div class="todo-main__content">
-              <input class="todo__checkbox" type="checkbox">
-              <p class="todo__title">This is the todo 1 ipsum dolor sit amet, consectetur adipiscing elit, 
-                sed do eiusmod tempor incididunt </p>
-              <p class="todo__due-date">28-08-2022</p>
-            </div>
-            <div class="todo__buttons">
-              <button class="todo__see-more-button"><i class='bx bxs-down-arrow'></i></button>
-              <button class="todo__edit-button"><i class='bx bxs-edit'></i></button>
-              <button class="todo__delete-button"><i class='bx bxs-trash-alt'></i></button>
+    <main class="content">
+      <section class="projects-and-edit-container">
+        <h2 class="projects__title">Projects</h2>
+        <div class="projects">
+          <div class="project">
+            <p class="project__title">Dummy Project 1</p>
+            <div class="project__buttons">
+              <button class="project__edit-button"><i class='bx bxs-edit' ></i></button>
+              <button class="project__delete-button"><i class='bx bxs-trash-alt'></i></button>
             </div>
           </div>
 
-          <div class="todo__extra">
-            <p class="todo__description-title">Description</p>
-            <p class="todo__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            <p class="todo__priority">High priority</p>
-            <p class="todo__status">Status: Incomplete</p>
-          </div>
-        </div>
-
-        <div class="todo">
-          <div class="todo__main">
-            <div class="todo-main__content">
-              <input class="todo__checkbox" type="checkbox">
-              <p class="todo__title">This is the todo 2</p>
-              <p class="todo__due-date">30-08-2022</p>
-            </div>
-            <div class="todo__buttons">
-              <button class="todo__see-more-button"><i class='bx bxs-down-arrow'></i></button>
-              <button class="todo__edit-button"><i class='bx bxs-edit'></i></button>
-              <button class="todo__delete-button"><i class='bx bxs-trash-alt'></i></button>
+          <div class="project">
+            <p class="project__title">Dummy Project 2</p>
+            <div class="project__buttons">
+              <button class="project__edit-button"><i class='bx bxs-edit' ></i></button>
+              <button class="project__delete-button"><i class='bx bxs-trash-alt'></i></button>
             </div>
           </div>
+        </div>
 
-          <div class="todo__extra">
-            <p class="todo__description-title">Description</p>
-            <p class="todo__description">Sed ut perspiciatis unde omnis iste natus error 
-              sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-            <p class="todo__priority">Medium priority</p>
-            <p class="todo__status">Status: Incomplete</p>
+        <button class="project__add-button">Add project <i class='bx bx-plus'></i></button>
+
+        <form class="project-edit project-edit_invisible">
+          <input class="project-edit__input" id="project-name-input"
+            placeholder="Enter project name..." type="text">
+          <div class="project-edit__buttons">
+            <button class="project-edit__confirm-button" type="button"><i class='bx bx-check'></i></button>
+            <button class="project-edit__cancel-button" type="button"><i class='bx bx-x'></i></button>
+          </div>
+        </form>
+      </section>
+
+      <section class="todos-and-edit-container">
+        <h2 class="todos__project-title">Dummy Project 1</h2>
+
+        <div class="todos">
+          <div class="todo">
+            <div class="todo__main">
+              <div class="todo-main__content">
+                <div class="todo-main__checkbox-and-title-container">
+                  <input class="todo__checkbox" type="checkbox">
+                  <p class="todo__title">This is the todo 1 ipsum dolor sit amet, consectetur adipiscing elit, 
+                    sed do eiusmod tempor incididunt </p>
+                </div>
+                <p class="todo__due-date">28-08-2022</p>
+              </div>
+              <div class="todo__buttons">
+                <button class="todo__see-more-button"><i class='bx bxs-down-arrow'></i></button>
+                <button class="todo__edit-button"><i class='bx bxs-edit'></i></button>
+                <button class="todo__delete-button"><i class='bx bxs-trash-alt'></i></button>
+              </div>
+            </div>
+
+            <div class="todo__extra todo__extra_invisible">
+              <p class="todo__description-title">Description</p>
+              <p class="todo__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              <p class="todo__priority">High priority</p>
+              <p class="todo__status">Status: Incomplete</p>
+            </div>
+          </div>
+
+          <div class="todo">
+            <div class="todo__main">
+              <div class="todo-main__content">
+                <div class="todo-main__checkbox-and-title-container">
+                  <input class="todo__checkbox" type="checkbox">
+                  <p class="todo__title">This is the todo 2</p>
+                </div>
+                <p class="todo__due-date">30-08-2022</p>
+              </div>
+              <div class="todo__buttons">
+                <button class="todo__see-more-button"><i class='bx bxs-down-arrow'></i></button>
+                <button class="todo__edit-button"><i class='bx bxs-edit'></i></button>
+                <button class="todo__delete-button"><i class='bx bxs-trash-alt'></i></button>
+              </div>
+            </div>
+
+            <div class="todo__extra todo__extra_invisible">
+              <p class="todo__description-title">Description</p>
+              <p class="todo__description">Sed ut perspiciatis unde omnis iste natus error 
+                sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+              <p class="todo__priority">Medium priority</p>
+              <p class="todo__status">Status: Incomplete</p>
+            </div>
           </div>
         </div>
-      </div>
 
-      <button class="todo__add-button">Add todo <i class='bx bx-plus'></i></button>
+        <button class="todo__add-button">Add todo <i class='bx bx-plus'></i></button>
 
-      <form class="todo-edit">
-        <label for="todo-edit__title-input" class="todo-edit__title-input-label">Title</label>
-        <input class="todo-edit__title-input" id="todo-edit__title-input"
-          type="text" placeholder="Enter todo title...">
+        <form class="todo-edit todo-edit_invisible">
+          <label for="todo-edit__title-input" class="todo-edit__title-input-label">Title</label>
+          <input class="todo-edit__title-input" id="todo-edit__title-input"
+            type="text" placeholder="Enter todo title...">
 
-        <label for="todo-edit__description-input" 
-          class="todo-edit__description-input-label">Description</label>
-        <textarea class="todo-edit__description-input" id="todo-edit__description-input"
-          type="text" placeholder="Enter todo description..."></textarea>
+          <label for="todo-edit__description-input" 
+            class="todo-edit__description-input-label">Description</label>
+          <textarea class="todo-edit__description-input" id="todo-edit__description-input"
+            type="text" placeholder="Enter todo description..."></textarea>
 
-        <label for="todo-edit__date-input" class="todo-edit__date-input-label">Due date</label>
-        <input class="todo-edit__date-input" id="todo-edit__date-input" type="date">
+          <label for="todo-edit__date-input" class="todo-edit__date-input-label">Due date</label>
+          <input class="todo-edit__date-input" id="todo-edit__date-input" type="date">
 
-        <div class="todo-edit__buttons">
-          <button class="todo-edit__confirm-button" type="button"><i class='bx bx-check'></i></button>
-          <button class="todo-edit__cancel-button" type="button"><i class='bx bx-x'></i></button>
-        </div>
-      </form>
+          <div class="todo-edit__buttons">
+            <button class="todo-edit__confirm-button" type="button"><i class='bx bx-check'></i></button>
+            <button class="todo-edit__cancel-button" type="button"><i class='bx bx-x'></i></button>
+          </div>
+        </form>
 
-    </section>
-  </main>
+      </section>
+    </main>
+  </div>
 
   <footer class="footer">
     <p>Made by nielsero</p>

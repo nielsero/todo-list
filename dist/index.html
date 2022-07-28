@@ -5,53 +5,64 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Todo List</title>
+  <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
   <link href="style.css" rel="stylesheet">
   <!-- <script src="main.js" defer></script> -->
 </head>
 <body>
   <header class="header">
-    <h1 class="header__title">Todo or not Todo</h1>
-    <button class="header__projects-button">☰</button>
+    <h1 class="header__title">Todo or not Todo?</h1>
+    <button class="header__projects-button"><i class="bx bx-menu"></i></button>
   </header>
+
   <main>
     <section class="projects-and-edit-container">
-      <h2>Projects</h2>
+      <h2 class="projects__title">Projects</h2>
       <div class="projects">
         <div class="project">
           <p class="project__title">Dummy Project 1</p>
           <div class="project__buttons">
-            <button class="project__edit-button">Edit</button>
-            <button class="project__delete-button">Delete</button>
+            <button class="project__edit-button"><i class='bx bxs-edit' ></i></button>
+            <button class="project__delete-button"><i class='bx bxs-trash-alt'></i></button>
           </div>
         </div>
 
         <div class="project">
           <p class="project__title">Dummy Project 2</p>
           <div class="project__buttons">
-            <button class="project__edit-button">Edit</button>
-            <button class="project__delete-button">Delete</button>
+            <button class="project__edit-button"><i class='bx bxs-edit' ></i></button>
+            <button class="project__delete-button"><i class='bx bxs-trash-alt'></i></button>
           </div>
         </div>
       </div>
+
+      <button class="project__add-button"><i class='bx bx-plus'></i></button>
+
       <form class="project-edit">
-        <input class="project-edit__name" id="project-name-input"
+        <input class="project-edit__input" id="project-name-input"
           placeholder="Enter new project name..." type="text">
-        <button class="project-edit__confirm-button" type="button">Confirm</button>
-        <button class="project-edit__cancel-button" type="button">Cancel</button>
+        <div class="project-edit__buttons">
+          <button class="project-edit__confirm-button" type="button"><i class='bx bx-check'></i></button>
+          <button class="project-edit__cancel-button" type="button"><i class='bx bx-x'></i></button>
+        </div>
       </form>
     </section>
+
     <section class="todos-container">
       <h2 class="todos__project-title">Dummy Project 1</h2>
       <div class="todos">
         <div class="todo">
           <div class="todo__main">
-            <input class="todo__checkbox" type="checkbox">
-            <p class="todo__title">This is the todo 1</p>
-            <p class="todo__due-date">28-08-2022</p>
+            <div class="todo-main__content">
+              <input class="todo__checkbox" type="checkbox">
+              <p class="todo__title">This is the todo 1 ipsum dolor sit amet, consectetur adipiscing elit, 
+                sed do eiusmod tempor incididunt </p>
+              <p class="todo__due-date">28-08-2022</p>
+            </div>
             <div class="todo__buttons">
-              <button class="todo__see-more-button">See More</button>
-              <button class="todo__edit-button">Edit</button>
-              <button class="todo__delete-button">Delete</button>
+              <button class="todo__see-more-button"><i class='bx bxs-down-arrow'></i></button>
+              <button class="todo__edit-button"><i class='bx bxs-edit'></i></button>
+              <button class="todo__delete-button"><i class='bx bxs-trash-alt'></i></button>
             </div>
           </div>
 
@@ -60,19 +71,21 @@
             <p class="todo__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
               sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
             <p class="todo__priority">High priority</p>
-            <button class="todo__unsee-button">Unsee</button>
+            <p class="todo__status">Status: Incomplete</p>
           </div>
         </div>
 
         <div class="todo">
           <div class="todo__main">
-            <input class="todo__checkbox" type="checkbox">
-            <p class="todo__title">This is the todo 2</p>
-            <p class="todo__due-date">30-08-2022</p>
+            <div class="todo-main__content">
+              <input class="todo__checkbox" type="checkbox">
+              <p class="todo__title">This is the todo 2</p>
+              <p class="todo__due-date">30-08-2022</p>
+            </div>
             <div class="todo__buttons">
-              <button class="todo__see-more-button">See More</button>
-              <button class="todo__edit-button">Edit</button>
-              <button class="todo__delete-button">Delete</button>
+              <button class="todo__see-more-button"><i class='bx bxs-down-arrow'></i></button>
+              <button class="todo__edit-button"><i class='bx bxs-edit'></i></button>
+              <button class="todo__delete-button"><i class='bx bxs-trash-alt'></i></button>
             </div>
           </div>
 
@@ -81,13 +94,14 @@
             <p class="todo__description">Sed ut perspiciatis unde omnis iste natus error 
               sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
             <p class="todo__priority">Medium priority</p>
-            <button class="todo__unsee-button">Unsee</button>
+            <p class="todo__status">Status: Incomplete</p>
           </div>
         </div>
       </div>
     </section>
   </main>
-  <footer>
+
+  <footer class="footer">
     <p>Made by nielsero</p>
   </footer>
 </body>

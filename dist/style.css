@@ -68,32 +68,30 @@ body {
 
 .project__add-button {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     margin-top: .7rem;
     padding: .3em .4em;
-}
-
-.project__add-button i {
-    font-size: 1.3rem;
+    margin-right: 0;
+    margin-left: auto;
 }
 
 .project-edit {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-top: .5rem;
-    padding-right: 10px;
+    margin-top: 1rem;
 }
 
 .project-edit__input {
-    padding: 10px 20px;
     width: 65%;
+    padding: 10px 20px;
+    border: 2px solid black;
 }
 
 .project-edit__buttons {
     display: flex;
     column-gap: 5px;
+    align-self: stretch; /* only way to make it 100% of height */
 }
 
 .project-edit__confirm-button,
@@ -101,10 +99,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 5px;
+    padding: 0 10px;
+    height: 100%;
+    font-size: 1.1rem;
 }
 
-.todos-container {
+.todos-and-edit-container {
     margin-top: 2rem;
     padding: 0 20px;
 }
@@ -173,7 +173,65 @@ body {
     margin-top: .3rem;
 }
 
+.todo__add-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    margin-right: 0;
+    margin-left: auto;
+    padding: .3em .4em;
+}
+
+.todo-edit {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+}
+
+.todo-edit__title-input-label,
+.todo-edit__description-input-label,
+.todo-edit__date-input-label {
+    margin-top: .7rem;
+    font-weight: 700;
+}
+
+.todo-edit__title-input {
+    margin-top: .3rem;
+    padding: 10px 20px;
+    font-family: 'Poppins', sans-serif;
+    border: 2px solid black;
+}
+
+.todo-edit__description-input {
+    height: 80px;
+    margin-top: .3rem;
+    padding: 10px 20px;
+    font-family: 'Poppins', sans-serif;
+    border: 2px solid black;
+}
+
+.todo-edit__date-input {
+    margin-top: .3rem;
+    padding: 10px 20px;
+    font-family: 'Poppins', sans-serif;
+    border: 2px solid black;
+}
+
+.todo-edit__buttons {
+    margin-top: .9rem;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.todo-edit__confirm-button,
+.todo-edit__cancel-button {
+    padding: 8px 10px;
+    font-size: 1.1rem;
+}
+
 .footer {
     text-align: center;
-    display: none;
+    margin-top: 1rem;
+    padding: 10px 5px;
 }

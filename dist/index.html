@@ -15,7 +15,7 @@
     <button class="header__projects-button"><i class="bx bx-menu"></i></button>
   </header>
 
-  <main>
+  <main class="content">
     <section class="projects-and-edit-container">
       <h2 class="projects__title">Projects</h2>
       <div class="projects">
@@ -36,11 +36,11 @@
         </div>
       </div>
 
-      <button class="project__add-button"><i class='bx bx-plus'></i></button>
+      <button class="project__add-button">Add project <i class='bx bx-plus'></i></button>
 
       <form class="project-edit">
         <input class="project-edit__input" id="project-name-input"
-          placeholder="Enter new project name..." type="text">
+          placeholder="Enter project name..." type="text">
         <div class="project-edit__buttons">
           <button class="project-edit__confirm-button" type="button"><i class='bx bx-check'></i></button>
           <button class="project-edit__cancel-button" type="button"><i class='bx bx-x'></i></button>
@@ -48,8 +48,9 @@
       </form>
     </section>
 
-    <section class="todos-container">
+    <section class="todos-and-edit-container">
       <h2 class="todos__project-title">Dummy Project 1</h2>
+
       <div class="todos">
         <div class="todo">
           <div class="todo__main">
@@ -98,6 +99,28 @@
           </div>
         </div>
       </div>
+
+      <button class="todo__add-button">Add todo <i class='bx bx-plus'></i></button>
+
+      <form class="todo-edit">
+        <label for="todo-edit__title-input" class="todo-edit__title-input-label">Title</label>
+        <input class="todo-edit__title-input" id="todo-edit__title-input"
+          type="text" placeholder="Enter todo title...">
+
+        <label for="todo-edit__description-input" 
+          class="todo-edit__description-input-label">Description</label>
+        <textarea class="todo-edit__description-input" id="todo-edit__description-input"
+          type="text" placeholder="Enter todo description..."></textarea>
+
+        <label for="todo-edit__date-input" class="todo-edit__date-input-label">Due date</label>
+        <input class="todo-edit__date-input" id="todo-edit__date-input" type="date">
+
+        <div class="todo-edit__buttons">
+          <button class="todo-edit__confirm-button" type="button"><i class='bx bx-check'></i></button>
+          <button class="todo-edit__cancel-button" type="button"><i class='bx bx-x'></i></button>
+        </div>
+      </form>
+
     </section>
   </main>
 

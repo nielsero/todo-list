@@ -6,27 +6,89 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Todo List</title>
   <link href="style.css" rel="stylesheet">
-  <script src="main.js" defer></script>
+  <!-- <script src="main.js" defer></script> -->
 </head>
 <body>
   <header class="header">
-    <h1 class="header__text">Todo List</h1>
-    <button class="header__projects-hamburguer">☰</button>
+    <h1 class="header__title">Todo or not Todo</h1>
+    <button class="header__projects-button">☰</button>
   </header>
-  <section class="projects-container">
-    <h2>Projects</h2>
-    <div class="projects">
-    </div>
-    <div class="project-edit project-edit_invisible">
-      <input class="project-edit__name" name="project-name" placeholder="new name" type="text">
-      <button class="project-edit__confirm-button">Confirm</button>
-      <button class="project-edit__cancel-button">Cancel</button>
-    </div>
-  </section>
-  <section class="todos-container">
-    <h2>Todos</h2>
-    <div class="todos">
-    </div>
-  </section>
+  <main>
+    <section class="projects-and-edit-container">
+      <h2>Projects</h2>
+      <div class="projects">
+        <div class="project">
+          <p class="project__title">Dummy Project 1</p>
+          <div class="project__buttons">
+            <button class="project__edit-button">Edit</button>
+            <button class="project__delete-button">Delete</button>
+          </div>
+        </div>
+
+        <div class="project">
+          <p class="project__title">Dummy Project 2</p>
+          <div class="project__buttons">
+            <button class="project__edit-button">Edit</button>
+            <button class="project__delete-button">Delete</button>
+          </div>
+        </div>
+      </div>
+      <form class="project-edit">
+        <input class="project-edit__name" id="project-name-input"
+          placeholder="Enter new project name..." type="text">
+        <button class="project-edit__confirm-button" type="button">Confirm</button>
+        <button class="project-edit__cancel-button" type="button">Cancel</button>
+      </form>
+    </section>
+    <section class="todos-container">
+      <h2 class="todos__project-title">Dummy Project 1</h2>
+      <div class="todos">
+        <div class="todo">
+          <div class="todo__main">
+            <input class="todo__checkbox" type="checkbox">
+            <p class="todo__title">This is the todo 1</p>
+            <p class="todo__due-date">28-08-2022</p>
+            <div class="todo__buttons">
+              <button class="todo__see-more-button">See More</button>
+              <button class="todo__edit-button">Edit</button>
+              <button class="todo__delete-button">Delete</button>
+            </div>
+          </div>
+
+          <div class="todo__extra">
+            <p class="todo__description-title">Description</p>
+            <p class="todo__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <p class="todo__priority">High priority</p>
+            <button class="todo__unsee-button">Unsee</button>
+          </div>
+        </div>
+
+        <div class="todo">
+          <div class="todo__main">
+            <input class="todo__checkbox" type="checkbox">
+            <p class="todo__title">This is the todo 2</p>
+            <p class="todo__due-date">30-08-2022</p>
+            <div class="todo__buttons">
+              <button class="todo__see-more-button">See More</button>
+              <button class="todo__edit-button">Edit</button>
+              <button class="todo__delete-button">Delete</button>
+            </div>
+          </div>
+
+          <div class="todo__extra">
+            <p class="todo__description-title">Description</p>
+            <p class="todo__description">Sed ut perspiciatis unde omnis iste natus error 
+              sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+            <p class="todo__priority">Medium priority</p>
+            <button class="todo__unsee-button">Unsee</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <p>Made by nielsero</p>
+  </footer>
 </body>
 </html>

@@ -6,26 +6,28 @@ class ProjectManager {
         this.activeProject = null;
     }
 
-    addProject(project) {
-        // const searchedProject = this.findProject(project.name);
-        // if(searchedProject) {
-        //     console.log("[ ProjectManager ] Project with same name already exists");
-        //     return;
-        // }
+    addProject(project) { 
         this.projects.push(project);
     }
 
-    findProject(projectName) {
+    findProject(projectTitle) {
         const project = this.projects.find((proj) => {
-            return proj.name === projectName;
+            return proj.title === projectTitle;
         });
         return project;
     }
 
-    removeProject(projectName) {
+    deleteProject(projectTitle) {
         this.projects = this.projects.filter((project) => {
-            return project.name != projectName;
+            return project.title != projectTitle;
         });
+    }
+
+    isTitleValid(projectTitle) {
+        if(projectTitle == "") {
+            return false;
+        }
+        return true;
     }
 }
 

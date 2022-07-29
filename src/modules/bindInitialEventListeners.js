@@ -57,6 +57,7 @@ function handleProjectAddButtonClick(event) {
     // Reveal project edit form
     const projectEditForm = document.querySelector(".project-edit");
     projectEditForm.classList.remove("project-edit_invisible");
+    projectEditForm.setAttribute("data-mode", "add");
 }
 
 function handleProjectEditCancelButtonClick(event) {

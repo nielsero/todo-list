@@ -2,6 +2,7 @@ import "./style.css";
 import ProjectManager from "./modules/projectManager";
 import bindInitialEventListeners from "./modules/bindInitialEventListeners";
 import { renderProjects, renderTodosFromProject } from "./modules/render";
+import bindEventListenersToProjectElements from "./modules/bindEventListenersToProjectElements";
 import Project from "./modules/project";
 import TodoItem from "./modules/todoItem";
 
@@ -11,6 +12,7 @@ function main() {
     bindInitialEventListeners();
     renderProjects(projectManager.projects);
     renderTodosFromProject(projectManager.projects[0]);
+    bindEventListenersToProjectElements(projectManager);
 }
 
 function setupMockProjectManager(projectManager) {

@@ -1,22 +1,59 @@
 import cleanContainer from "../util/cleanContainer";
 import appendChildren from "../util/appendChildren";
 
-function renderProjects(projects) {
+function render(projectManager) {
+    renderProjectsFromProjectManager(projectManager);
+    renderTodosFromProject(projectManager.activeProject);
+} 
+
+function renderProjectsFromProjectManager(projectManager) {
     const projectsContainer = document.querySelector(".projects");
     cleanContainer(projectsContainer); // out with the old, in with the new
 
-    projects.forEach((project) => {
-        projectsContainer.appendChild(createProjectElement(project));
+    if(projectManager.isEmpty()) {
+        const emptyProjectsMessage = createParagraph("No projects");
+        projectsContainer.appendChild(emptyProjectsMessage);
+        return;
+    }
+
+    projectManager.projects.forEach((project) => {
+        const projectElement = createProjectElement(project);
+
+        if(projectManager.isProjectActive(project.title)) {
+            projectElement.classList.add("project_active");
+        }
+
+        projectsContainer.appendChild(projectElement);
     });
 }
 
 function renderTodosFromProject(project) {
     const todosProjectTitle = document.querySelector(".todos__project-title");
-    todosProjectTitle.textContent = project.title;
-
+    const todoAddButton = document.querySelector(".todo__add-button");
+    const todoEditForm = document.querySelector(".todo-edit");
     const todosContainer = document.querySelector(".todos");
     cleanContainer(todosContainer);
+
+    if(project == null ) {
+        todosProjectTitle.textContent = "No projects available";
+        const emptyTodosMessage = createParagraph("Can't make todos, create a project first.");
+        todosContainer.appendChild(emptyTodosMessage);
+
+        // To not display add button & form, when there are no projects
+        todoAddButton.classList.add("todo__add-button_invisible");
+        todoEditForm.classList.add("todo-edit_invisible");
+        return;
+    } 
+
+    todoAddButton.classList.remove("todo__add-button_invisible");
+    todosProjectTitle.textContent = project.title;
    
+    if(project.todos.length === 0) {
+        const emptyTodosMessage = createParagraph("No todos available, add a todo.");
+        todosContainer.appendChild(emptyTodosMessage);
+        return;
+    }
+    
     project.todos.forEach((todo, index) => {
         todosContainer.appendChild(createTodoElement(todo, index));
     });
@@ -139,6 +176,7 @@ function createTodoButtons(index) {
 function createTodoExtra(todo) {
     const todoExtra = document.createElement("div");
     todoExtra.classList.add("todo__extra");
+    todoExtra.classList.add("todo__extra_invisible");
 
     const todoDescriptionTitle = createParagraph("Description");
     todoDescriptionTitle.classList.add("todo__description-title");
@@ -156,4 +194,4 @@ function createTodoExtra(todo) {
     return todoExtra;
 }
 
-export { renderProjects, renderTodosFromProject };
+export { render, renderProjectsFromProjectManager, renderTodosFromProject };

@@ -1,5 +1,5 @@
 import Project from "./project";
-import { renderProjects, renderTodosFromProject } from "./render";
+import { render } from "./render";
 
 function bindEventListenersToProjectElements(projectManager) {
     bindEventListenersToStaticProjectElements(projectManager);
@@ -66,7 +66,7 @@ function handleProjectEditConfirmButtonModeAdd(projectManager) {
 
     const project = new Project(projectTitle); // create
     projectManager.addProject(project); // add
-    renderProjects(projectManager.projects); // render
+    render(projectManager); // render
     
     // Clean input and rebind events to all project elements
     projectEditInput.value = "";
@@ -91,7 +91,7 @@ function handleProjectEditConfirmButtonModeEdit(projectManager) {
     projectEditContainer.setAttribute("data-project", projectNewTitle); // this matters on next edit
 
     // Re-render, clean & re-bind
-    renderProjects(projectManager.projects);
+    render(projectManager);
     projectEditInput.value = "";
     bindEventListenersToDynamicProjectElements(projectManager);
 }
@@ -109,7 +109,7 @@ function handleProjectEditButton(projectManager, projectTitle) {
 
 function handleProjectDeleteButton(projectManager, projectTitle) {
     projectManager.deleteProject(projectTitle);
-    renderProjects(projectManager.projects); // re-render
+    render(projectManager); // re-render
     bindEventListenersToDynamicProjectElements(projectManager); // re-bind
 }
 

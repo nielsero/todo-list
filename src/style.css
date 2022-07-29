@@ -15,7 +15,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 100vh;
+    min-height: 101vh;
     font-family: 'Saira Semi Condensed', sans-serif;
 }
 
@@ -24,7 +24,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    border-bottom: 2px solid black;
+    border-bottom: 3px solid gray;
 }
 
 .header__projects-button {
@@ -82,8 +82,6 @@ body {
     justify-content: center;
     align-items: center;
     margin-top: 1rem;
-    margin-right: 0;
-    margin-left: auto;
     padding: .3em .4em;
 }
 
@@ -199,8 +197,6 @@ body {
     justify-content: center;
     align-items: center;
     margin-top: 1rem;
-    margin-right: 0;
-    margin-left: auto;
     padding: .3em .4em;
 }
 
@@ -301,6 +297,10 @@ body {
 }
 
 /* modifiers */
+.project_active {
+    background-color: lightblue;
+}
+
 .projects-and-edit-container_invisible {
     /* visibility: hidden;
     position: absolute;
@@ -317,5 +317,9 @@ body {
 }
 
 .todo__extra_invisible {
+    display: none;
+}
+
+.todo__add-button_invisible {
     display: none;
 }

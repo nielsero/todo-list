@@ -1,18 +1,19 @@
 import "./style.css";
 import ProjectManager from "./modules/projectManager";
 import bindInitialEventListeners from "./modules/bindInitialEventListeners";
-import { renderProjects, renderTodosFromProject } from "./modules/render";
+import { render } from "./modules/render";
 import bindEventListenersToProjectElements from "./modules/bindEventListenersToProjectElements";
 import Project from "./modules/project";
 import TodoItem from "./modules/todoItem";
+import bindEventListenersToTodoElements from "./modules/bindEventListenersToTodoElements";
 
 function main() {
     const projectManager = new ProjectManager();
     setupMockProjectManager(projectManager);
     bindInitialEventListeners();
-    renderProjects(projectManager.projects);
-    renderTodosFromProject(projectManager.projects[0]);
+    render(projectManager);
     bindEventListenersToProjectElements(projectManager);
+    bindEventListenersToTodoElements(projectManager);
 }
 
 function setupMockProjectManager(projectManager) {
@@ -31,6 +32,7 @@ function setupMockProjectManager(projectManager) {
 
     projectManager.addProject(demoProject);
     projectManager.addProject(otherProject);
+    projectManager.activeProject = demoProject;
 }
 
 main();

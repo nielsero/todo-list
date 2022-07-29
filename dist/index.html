@@ -103,10 +103,12 @@
             </div>
           </div>
         </div>
+        
+        <a class="todo__add-button-link" href="#todo-edit">
+          <button class="todo__add-button">Add todo <i class='bx bx-plus'></i></button>
+        </a>
 
-        <button class="todo__add-button">Add todo <i class='bx bx-plus'></i></button>
-
-        <form class="todo-edit todo-edit_invisible">
+        <form class="todo-edit todo-edit_invisible" id="todo-edit">
           <label for="todo-edit__title-input" class="todo-edit__title-input-label">Title</label>
           <input class="todo-edit__title-input" id="todo-edit__title-input"
             type="text" placeholder="Enter todo title...">
@@ -118,6 +120,15 @@
 
           <label for="todo-edit__date-input" class="todo-edit__date-input-label">Due date</label>
           <input class="todo-edit__date-input" id="todo-edit__date-input" type="date">
+
+          <label for="todo-edit__priority-select"
+            class="todo-edit__priority-select-label">Priority</label>
+          <select class="todo-edit__priority-select" id="todo-edit__priority-select">
+            <option value=0>None</option>
+            <option value=1>Low</option>
+            <option value=2>Medium</option>
+            <option value=3>High</option>
+          </select>
 
           <div class="todo-edit__buttons">
             <button class="todo-edit__confirm-button" type="button"><i class='bx bx-check'></i></button>

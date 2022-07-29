@@ -97,7 +97,7 @@ body {
 .project-edit__input {
     width: 65%;
     padding: 10px 20px;
-    border: 2px solid black;
+    border: 1px solid black;
 }
 
 .project-edit__buttons {
@@ -149,6 +149,7 @@ body {
 
 .todo__due-date {
     min-width: 100px; /* to not make date wrap to next line */
+    text-align: end;
 }
 
 .todo__buttons {
@@ -189,6 +190,10 @@ body {
     margin-top: .3rem;
 }
 
+.todo__add-button-link {
+    text-decoration: none;
+}
+
 .todo__add-button {
     display: flex;
     justify-content: center;
@@ -207,7 +212,8 @@ body {
 
 .todo-edit__title-input-label,
 .todo-edit__description-input-label,
-.todo-edit__date-input-label {
+.todo-edit__date-input-label,
+.todo-edit__priority-select-label {
     margin-top: .7rem;
     font-weight: 700;
 }
@@ -216,7 +222,7 @@ body {
     margin-top: .3rem;
     padding: 10px 20px;
     font-family: 'Poppins', sans-serif;
-    border: 2px solid black;
+    border: 1px solid black;
 }
 
 .todo-edit__description-input {
@@ -224,14 +230,21 @@ body {
     margin-top: .3rem;
     padding: 10px 20px;
     font-family: 'Poppins', sans-serif;
-    border: 2px solid black;
+    border: 1px solid black;
 }
 
 .todo-edit__date-input {
     margin-top: .3rem;
     padding: 10px 20px;
     font-family: 'Poppins', sans-serif;
-    border: 2px solid black;
+    border: 1px solid black;
+}
+
+.todo-edit__priority-select {
+    margin-top: .3rem;
+    padding: 10px 20px;
+    font-family: 'Poppins', sans-serif;
+    border: 1px solid black;
 }
 
 .todo-edit__buttons {

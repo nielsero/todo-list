@@ -1,16 +1,17 @@
-import previousDay from "date-fns/previousDay/index";
-
 function bindInitialEventListeners() {
     // Getting the DOM elements
     const headerProjectsButton = document.querySelector(".header__projects-button");
     const projectAddButton = document.querySelector(".project__add-button");
     const projectEditCancelButton = document.querySelector(".project-edit__cancel-button");
-
+    const todoAddButton = document.querySelector(".todo__add-button");
+    const todoEditCancelButton = document.querySelector(".todo-edit__cancel-button");
 
     // Binding listeners
     headerProjectsButton.addEventListener("click", handleHeaderProjectsButtonClick);
     projectAddButton.addEventListener("click", handleProjectAddButtonClick);
     projectEditCancelButton.addEventListener("click", handleProjectEditCancelButtonClick);
+    todoAddButton.addEventListener("click", handleTodoAddButtonClick);
+    todoEditCancelButton.addEventListener("click", handleTodoEditCancelButtonClick);
 }
 
 function handleHeaderProjectsButtonClick(event) {
@@ -62,6 +63,16 @@ function handleProjectEditCancelButtonClick(event) {
     // Hide the project edit form again
     const projectEditForm = document.querySelector(".project-edit");
     projectEditForm.classList.add("project-edit_invisible");
+}
+
+function handleTodoAddButtonClick(event) {
+    const todoEditForm = document.querySelector(".todo-edit");
+    todoEditForm.classList.remove("todo-edit_invisible");
+}
+
+function handleTodoEditCancelButtonClick(event) {
+    const todoEditForm = document.querySelector(".todo-edit");
+    todoEditForm.classList.add("todo-edit_invisible");
 }
 
 export default bindInitialEventListeners;

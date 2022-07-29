@@ -6,10 +6,30 @@ class TodoItem {
         this.description = description;
         this.dueDate = dueDate;
         this.priority = priority;
+        this.completed = false;
+    }
+
+    edit(newTitle, newDescription, newDueDate, newPriority) {
+        this.title = newTitle;
+        this.description = newDescription;
+        this.dueDate = newDueDate;
+        this.priority = newPriority;
     }
 
     get formattedDueDate() {
-        return format(this.dueDate, "dd-MM-yyyy");
+        return format(this.dueDate, "MM-dd-yyyy");
+    }
+
+    get priorityInWords() {
+        const prioritiesInWords = ["None", "Low", "Medium", "High"];
+        return prioritiesInWords[this.priority];
+    }
+
+    get statusInWords() {
+        if(this.completed) {
+            return "Complete";
+        }
+        return "Incomplete";
     }
 }
 

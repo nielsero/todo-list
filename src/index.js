@@ -1,32 +1,8 @@
-import Project from "./modules/project";
-import ProjectManager from "./modules/projectManager";
-import TodoItem from "./modules/todoItem";
-import { renderProjects, renderTodos } from "./modules/render";
-import bindEventListeners from "./modules/bindEventListeners";
+import "./style.css";
+import bindInitialEventListeners from "./modules/bindInitialEventListeners";
 
-// Initialization
-export const projectManager = new ProjectManager(); // exported to be used by the event listeners
-// const defaultProject = new Project("default");
-// projectManager.addProject(defaultProject);
-// projectManager.changeActiveProjectTo("default");
+function main() {
+    bindInitialEventListeners();
+}
 
-// Demo todos
-const first = new TodoItem("first todo", "description of first todo", new Date(), 1);
-const second = new TodoItem("second todo", "description of second todo", new Date(), 2);
-const third = new TodoItem("third todo", "description of third todo", new Date(), 1);
-const fourth = new TodoItem("fourth todo", "description of fourth todo", new Date(), 1);
-
-const otherProject = new Project("other");
-projectManager.defaultProject.addTodo(first);
-projectManager.defaultProject.addTodo(second);
-
-otherProject.addTodo(third);
-otherProject.addTodo(fourth);
-
-projectManager.addProject(otherProject);
-
-renderProjects(projectManager.projects);
-console.log(projectManager.projects);
-renderTodos(projectManager.activeProject.todos);
-
-bindEventListeners();
+main();

@@ -47,6 +47,7 @@ body {
 
 .projects-and-edit-container {
     margin-top: 1rem;
+    transition: all 1s;
 }
 
 .project {
@@ -288,6 +289,9 @@ body {
 
 /* modifiers */
 .projects-and-edit-container_invisible {
+    /* visibility: hidden;
+    position: absolute;
+    transform: translateX(400px); */
     display: none;
 }
 

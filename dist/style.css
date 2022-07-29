@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Uchen&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Saira+Semi+Condensed:wght@300;400;700&display=swap');
 
 *,
 *::before,
@@ -13,7 +16,7 @@ body {
     flex-direction: column;
     justify-content: space-between;
     min-height: 100vh;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Saira Semi Condensed', sans-serif;
 }
 
 .header {
@@ -21,6 +24,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
+    border-bottom: 2px solid black;
 }
 
 .header__projects-button {
@@ -258,12 +262,13 @@ body {
         display: flex;
         justify-content: space-between;
         flex-direction: row-reverse;
+        column-gap: 35px;
         padding-left: 50px;
         padding-right: 60px;
     }
 
     .projects-and-edit-container {
-        width: 30%;
+        width: 35%;
     }
 
     .project {
@@ -272,7 +277,7 @@ body {
 
     .todos-and-edit-container {
         margin-top: 1rem;
-        width: 60%;
+        width: 100%;
     }
 
     .footer {
@@ -282,6 +287,10 @@ body {
 }
 
 /* modifiers */
+.projects-and-edit-container_invisible {
+    display: none;
+}
+
 .project-edit_invisible {
     display: none;
 }

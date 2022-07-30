@@ -6,7 +6,7 @@ class TodoItem {
         this.description = description;
         this.dueDate = dueDate;
         this.priority = priority;
-        this.completed = false;
+        this.isComplete = false;
     }
 
     edit(newTitle, newDescription, newDueDate, newPriority) {
@@ -17,6 +17,10 @@ class TodoItem {
         this.description = newDescription;
         this.dueDate = newDueDate;
         this.priority = newPriority;
+    }
+
+    toggleIsComplete() {
+        this.isComplete = !this.isComplete;
     }
 
     get formattedDueDate() {
@@ -30,13 +34,6 @@ class TodoItem {
     get priorityInWords() {
         const prioritiesInWords = ["None", "Low", "Medium", "High"];
         return prioritiesInWords[this.priority];
-    }
-
-    get statusInWords() {
-        if(this.completed) {
-            return "Complete";
-        }
-        return "Incomplete";
     }
 }
 

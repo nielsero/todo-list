@@ -33,7 +33,7 @@ class ProjectManager {
         }
     }
 
-    isTitleValid(projectTitle) {
+    isProjectTitleValid(projectTitle) {
         if(projectTitle == "") {
             return false;
         }

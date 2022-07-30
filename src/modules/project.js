@@ -5,7 +5,7 @@ class Project {
     }
 
     addTodo(todo) {
-        if(this.isTodoValid(todo)) {
+        if(this.isTodoTitleValid(todo.title)) {
             this.todos.push(todo);
         }
     }
@@ -18,8 +18,8 @@ class Project {
         this.todos.splice(index, 1);
     }
 
-    isTodoValid(todo) {
-        return todo.title != "";
+    isTodoTitleValid(todoTitle) {
+        return todoTitle != "";
     }
 
     findTodo(index) {

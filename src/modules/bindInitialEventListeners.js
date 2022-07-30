@@ -1,3 +1,5 @@
+import cleanTodoEditFormInputs from "../util/cleanTodoEditFormInputs";
+
 function bindInitialEventListeners() {
     // Getting the DOM elements
     const headerProjectsButton = document.querySelector(".header__projects-button");
@@ -70,6 +72,8 @@ function handleTodoAddButtonClick(event) {
     const todoEditForm = document.querySelector(".todo-edit");
     todoEditForm.classList.remove("todo-edit_invisible");
     todoEditForm.setAttribute("data-mode", "add");
+
+    cleanTodoEditFormInputs();
 }
 
 function handleTodoEditCancelButtonClick(event) {

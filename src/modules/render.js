@@ -14,6 +14,7 @@ function renderProjectsFromProjectManager(projectManager) {
 
     if(projectManager.isEmpty()) {
         const emptyProjectsMessage = createParagraph("No projects");
+        emptyProjectsMessage.classList.add("project__empty-projects-message");
         projectsContainer.appendChild(emptyProjectsMessage);
         return;
     }
@@ -43,6 +44,7 @@ function renderTodosFromProjectManager(projectManager) {
     if(project == null ) {
         todosProjectTitle.textContent = "No projects available";
         const emptyTodosMessage = createParagraph("Can't make todos, create a project first.");
+        emptyTodosMessage.classList.add("todo__empty-todos-message");
         todosContainer.appendChild(emptyTodosMessage);
 
         // To not display add button & form, when there are no projects
@@ -56,6 +58,7 @@ function renderTodosFromProjectManager(projectManager) {
    
     if(project.todos.length === 0) {
         const emptyTodosMessage = createParagraph("No todos available, add a todo.");
+        emptyTodosMessage.classList.add("todo__empty-todos-message");
         todosContainer.appendChild(emptyTodosMessage);
         return;
     }
@@ -97,9 +100,13 @@ function createTodoElement(todo, index) {
     todoElement.classList.add("todo");
     todoElement.setAttribute("data-todo", index);
 
-    const todoMain = createTodoMain(todo, index);
+    const todoMain = createTodoMain(todo);
 
     const todoExtra = createTodoExtra(todo);
+
+    if(todo.isComplete) {
+        todoMain.classList.add("todo-main_checked");
+    }
 
     appendChildren(todoElement, [todoMain, todoExtra]);
     console.log(todoElement);
@@ -123,7 +130,7 @@ function createButtonWithIcon(iconClassName) {
     return button;
 }
 
-function createTodoMain(todo, index) {
+function createTodoMain(todo) {
     const todoMain = document.createElement("div");
     todoMain.classList.add("todo__main");
 
@@ -157,6 +164,10 @@ function createTodoMainCheckboxAndTitleContainer(todo) {
 
     const todoTitle = createParagraph(todo.title);
     todoTitle.classList.add("todo__title");
+
+    if(todo.isComplete) {
+        todoCheckbox.checked = true;
+    }
 
     appendChildren(todoMainCheckboxAndTitleContainer, [todoCheckbox, todoTitle]);
     return todoMainCheckboxAndTitleContainer;

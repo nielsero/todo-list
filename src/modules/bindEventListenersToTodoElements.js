@@ -1,5 +1,6 @@
 import { render } from "./render";
 import TodoItem from "./todoItem";
+import cleanTodoEditFormInputs from "../util/cleanTodoEditFormInputs";
 
 function bindEventListenersToStaticTodoElements(projectManager) {
     const todoEditConfirmButton = document.querySelector(".todo-edit__confirm-button");
@@ -12,7 +13,7 @@ function bindEventListenersToDynamicTodoElements(projectManager) {
     const todoSeeMoreButtons = document.querySelectorAll(".todo__see-more-button");
     const todoDeleteButtons = document.querySelectorAll(".todo__delete-button");
     const todoEditButtons = document.querySelectorAll(".todo__edit-button");
-    console.log(todoEditButtons);
+    const todoCheckboxes = document.querySelectorAll(".todo__checkbox");
 
     todoSeeMoreButtons.forEach((button) => {
         button.addEventListener("click", handleTodoSeeMoreButtonClick);
@@ -27,6 +28,12 @@ function bindEventListenersToDynamicTodoElements(projectManager) {
     todoEditButtons.forEach((button) => {
         button.addEventListener("click", () => {
             handleTodoEditButtonClick(button, projectManager);
+        });
+    });
+
+    todoCheckboxes.forEach((checkbox) => {
+        checkbox.addEventListener("change", () => {
+            handleTodoCheckBoxChecked(checkbox, projectManager);
         });
     });
 }
@@ -61,24 +68,17 @@ function handleTodoEditConfirmButtonModeAdd(projectManager) {
     // To prevent invalid dates
     const todoDueDate = (todoDueDateString === "") ? new Date() : new Date(todoDueDateString);
 
+    if(!projectManager.activeProject.isTodoTitleValid(todoTitle)) {
+        console.log("todo title not valid for adding")
+        return;
+    }
+
     const todo = new TodoItem(todoTitle, todoDescription, todoDueDate, todoPriority);
     projectManager.activeProject.addTodo(todo);
     
     render(projectManager);
     cleanTodoEditFormInputs();
     todoEditForm.classList.add("todo-edit_invisible");
-}
-
-function cleanTodoEditFormInputs() {
-    const todoEditTitleInput = document.querySelector(".todo-edit__title-input");
-    const todoEditDescriptionArea = document.querySelector(".todo-edit__description-input"); // actually a text area, change later
-    const todoEditDateInput = document.querySelector(".todo-edit__date-input");
-    const todoEditPrioritySelect = document.querySelector(".todo-edit__priority-select");
-
-    todoEditTitleInput.value = "";
-    todoEditDescriptionArea.value = "";
-    todoEditDateInput.value = "";
-    todoEditPrioritySelect.value = 0;
 }
 
 function handleTodoEditConfirmButtonModeEdit(projectManager) {
@@ -97,6 +97,11 @@ function handleTodoEditConfirmButtonModeEdit(projectManager) {
     
     // To prevent invalid dates
     const todoDueDate = (todoDueDateString === "") ? new Date() : new Date(todoDueDateString);
+
+    if(!projectManager.activeProject.isTodoTitleValid(todoTitle)) {
+        console.log("todo title not valid for edit")
+        return;
+    }
 
     const todo = projectManager.activeProject.findTodo(todoIndex);
     todo.edit(todoTitle, todoDescription, todoDueDate, todoPriority);
@@ -173,6 +178,17 @@ function handleTodoEditButtonClick(todoEditButton, projectManager) {
     todoEditDescriptionArea.value = todo.description;
     todoEditDateInput.value = todo.browserRequiredFormattedDueDate;
     todoEditPrioritySelect.value = todo.priority;
+}
+
+function handleTodoCheckBoxChecked(todoCheckbox, projectManager) {
+    const todoElement = todoCheckbox.parentElement.parentElement.parentElement.parentElement;
+    const todoMain = todoElement.querySelector(".todo__main");
+
+    const todoIndex = Number(todoElement.getAttribute("data-todo"));
+    const todo = projectManager.activeProject.findTodo(todoIndex);
+    todo.toggleIsComplete();
+
+    todoMain.classList.toggle("todo-main_checked");
 }
 
 export { bindEventListenersToStaticTodoElements , bindEventListenersToDynamicTodoElements };

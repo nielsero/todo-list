@@ -11,6 +11,10 @@
   margin: 0;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -24,7 +28,6 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    border-bottom: 3px solid gray;
 }
 
 .header__projects-button {
@@ -157,6 +160,10 @@ body {
     justify-content: flex-end;
 }
 
+.todo__edit-button-link {
+    text-decoration: none;
+}
+
 .todo__see-more-button,
 .todo__edit-button,
 .todo__delete-button {
@@ -180,11 +187,12 @@ body {
     margin-top: .3rem;
 }
 
-.todo__priority {
-    margin-top: .3rem;
+.todo__priority-title {
+    margin-top: .5rem;
+    font-weight: 700;
 }
 
-.todo__status {
+.todo__priority {
     margin-top: .3rem;
 }
 
@@ -318,6 +326,10 @@ body {
 
 .todo__extra_invisible {
     display: none;
+}
+
+.todo__description_not-provided {
+    color: gray;
 }
 
 .todo__add-button_invisible {

@@ -1,9 +1,11 @@
 import cleanContainer from "../util/cleanContainer";
 import appendChildren from "../util/appendChildren";
+import { bindEventListenersToDynamicProjectElements } from "./bindEventListenersToProjectElements";
+import { bindEventListenersToDynamicTodoElements } from "./bindEventListenersToTodoElements";
 
 function render(projectManager) {
     renderProjectsFromProjectManager(projectManager);
-    renderTodosFromProject(projectManager.activeProject);
+    renderTodosFromProjectManager(projectManager);
 } 
 
 function renderProjectsFromProjectManager(projectManager) {
@@ -25,14 +27,18 @@ function renderProjectsFromProjectManager(projectManager) {
 
         projectsContainer.appendChild(projectElement);
     });
+
+    bindEventListenersToDynamicProjectElements(projectManager); // re-binding listeners to new project elements
 }
 
-function renderTodosFromProject(project) {
+function renderTodosFromProjectManager(projectManager) {
     const todosProjectTitle = document.querySelector(".todos__project-title");
     const todoAddButton = document.querySelector(".todo__add-button");
     const todoEditForm = document.querySelector(".todo-edit");
     const todosContainer = document.querySelector(".todos");
     cleanContainer(todosContainer);
+
+    const project = projectManager.activeProject;
 
     if(project == null ) {
         todosProjectTitle.textContent = "No projects available";
@@ -57,6 +63,8 @@ function renderTodosFromProject(project) {
     project.todos.forEach((todo, index) => {
         todosContainer.appendChild(createTodoElement(todo, index));
     });
+
+    bindEventListenersToDynamicTodoElements(projectManager);
 }
 
 function createProjectElement(project) {
@@ -87,6 +95,7 @@ function createProjectElement(project) {
 function createTodoElement(todo, index) {
     const todoElement = document.createElement("div");
     todoElement.classList.add("todo");
+    todoElement.setAttribute("data-todo", index);
 
     const todoMain = createTodoMain(todo, index);
 
@@ -119,7 +128,7 @@ function createTodoMain(todo, index) {
     todoMain.classList.add("todo__main");
 
     const todoMainContent = createTodoMainContent(todo);
-    const todoButtons = createTodoButtons(index);
+    const todoButtons = createTodoButtons();
 
     appendChildren(todoMain, [todoMainContent, todoButtons]);
     return todoMain;
@@ -153,23 +162,24 @@ function createTodoMainCheckboxAndTitleContainer(todo) {
     return todoMainCheckboxAndTitleContainer;
 }
 
-function createTodoButtons(index) {
+function createTodoButtons() {
     const todoButtonsContainer = document.createElement("div");
     todoButtonsContainer.classList.add("todo__buttons");
 
     const todoSeeMoreButton = createButtonWithIcon("bxs-down-arrow");
     todoSeeMoreButton.classList.add("todo__see-more-button");
-    todoSeeMoreButton.setAttribute("data-todo", index);
 
+    const todoEditButtonLink = document.createElement("a");
+    todoEditButtonLink.href = "#todo-edit";
+    todoEditButtonLink.classList.add("todo__edit-button-link");
     const todoEditButton = createButtonWithIcon("bxs-edit");
     todoEditButton.classList.add("todo__edit-button");
-    todoEditButton.setAttribute("data-todo", index);
+    todoEditButtonLink.appendChild(todoEditButton);
 
     const todoDeleteButton = createButtonWithIcon("bxs-trash-alt");
     todoDeleteButton.classList.add("todo__delete-button");
-    todoDeleteButton.setAttribute("data-todo", index);
 
-    appendChildren(todoButtonsContainer, [todoSeeMoreButton, todoEditButton, todoDeleteButton]);
+    appendChildren(todoButtonsContainer, [todoSeeMoreButton, todoEditButtonLink, todoDeleteButton]);
     return todoButtonsContainer;
 } 
 
@@ -181,17 +191,24 @@ function createTodoExtra(todo) {
     const todoDescriptionTitle = createParagraph("Description");
     todoDescriptionTitle.classList.add("todo__description-title");
 
-    const todoDescription = createParagraph(todo.description);
+    let todoDescription;
+
+    if(todo.description === "") {
+        todoDescription = createParagraph("No description provided");
+        todoDescription.classList.add("todo__description_not-provided");
+    } else {
+        todoDescription = createParagraph(todo.description);
+    }
     todoDescription.classList.add("todo__description");
 
-    const todoPriority = createParagraph(`Priority: ${todo.priorityInWords}`);
+    const todoPriorityTitle = createParagraph("Priority");
+    todoPriorityTitle.classList.add("todo__priority-title");
+
+    const todoPriority = createParagraph(todo.priorityInWords);
     todoPriority.classList.add("todo__priority");
 
-    const todoStatus = createParagraph(`Status: ${todo.statusInWords}`);
-    todoStatus.classList.add("todo__status");
-
-    appendChildren(todoExtra, [todoDescriptionTitle, todoDescription, todoPriority, todoStatus]);
+    appendChildren(todoExtra, [todoDescriptionTitle, todoDescription, todoPriorityTitle, todoPriority]);
     return todoExtra;
 }
 
-export { render, renderProjectsFromProjectManager, renderTodosFromProject };
+export { render, renderProjectsFromProjectManager, renderTodosFromProjectManager };

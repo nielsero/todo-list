@@ -10,6 +10,9 @@ class TodoItem {
     }
 
     edit(newTitle, newDescription, newDueDate, newPriority) {
+        if(newTitle === "") {
+            return;
+        }
         this.title = newTitle;
         this.description = newDescription;
         this.dueDate = newDueDate;
@@ -18,6 +21,10 @@ class TodoItem {
 
     get formattedDueDate() {
         return format(this.dueDate, "MM-dd-yyyy");
+    }
+
+    get browserRequiredFormattedDueDate() {
+        return format(this.dueDate, "yyyy-MM-dd");
     }
 
     get priorityInWords() {

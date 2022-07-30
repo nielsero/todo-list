@@ -69,6 +69,7 @@ function handleProjectEditCancelButtonClick(event) {
 function handleTodoAddButtonClick(event) {
     const todoEditForm = document.querySelector(".todo-edit");
     todoEditForm.classList.remove("todo-edit_invisible");
+    todoEditForm.setAttribute("data-mode", "add");
 }
 
 function handleTodoEditCancelButtonClick(event) {

@@ -5,15 +5,29 @@ class Project {
     }
 
     addTodo(todo) {
-        this.todos.push(todo);
+        if(this.isTodoValid(todo)) {
+            this.todos.push(todo);
+        }
     }
 
     deleteTodo(index) {
-        if(index < 0 || i >= this.todos.length) {
+        if(index < 0 || index >= this.todos.length) {
             console.log("Can't delete todo. Invalid index");
             return;
         }
-        this.todos.splice(index, index + 1);
+        this.todos.splice(index, 1);
+    }
+
+    isTodoValid(todo) {
+        return todo.title != "";
+    }
+
+    findTodo(index) {
+        if(index < 0 || index >= this.todos.length) {
+            console.log("Can't find todo. Invalid index");
+            return null;
+        }
+        return this.todos[index];
     }
 }
 

@@ -1,11 +1,6 @@
 import Project from "./project";
 import { render } from "./render";
 
-function bindEventListenersToProjectElements(projectManager) {
-    bindEventListenersToStaticProjectElements(projectManager);
-    bindEventListenersToDynamicProjectElements(projectManager);
-}
-
 // Called only once, at the start
 function bindEventListenersToStaticProjectElements(projectManager) {
     // Static DOM elements
@@ -13,7 +8,7 @@ function bindEventListenersToStaticProjectElements(projectManager) {
 
     // Listeners
     projectEditConfirmButton
-    .addEventListener("click", () => handleProjectEditConfirmButton(projectManager));
+        .addEventListener("click", () => { handleProjectEditConfirmButton(projectManager) });
 }
 
 // This are the listeners that I'll have to recursively call before each render
@@ -21,22 +16,28 @@ function bindEventListenersToDynamicProjectElements(projectManager) {
     // Dynamic DOM elements
     const projectEditButtons = document.querySelectorAll(".project__edit-button");
     const projectDeleteButtons = document.querySelectorAll(".project__delete-button");
+    const projectContainers = document.querySelectorAll(".project");
     
     // Listeners
     projectEditButtons.forEach((button) => {
         const actualProjectContainer = button.parentElement.parentElement;
         const projectTitle = actualProjectContainer.getAttribute("data-project");
 
-        button
-            .addEventListener("click", () => handleProjectEditButton(projectManager, projectTitle));
+        button.addEventListener("click", (event) => 
+            { handleProjectEditButton(event, projectManager, projectTitle) });
     });
 
     projectDeleteButtons.forEach((button) => {
         const actualProjectContainer = button.parentElement.parentElement;
         const projectTitle = actualProjectContainer.getAttribute("data-project");
 
-        button
-            .addEventListener("click", () => handleProjectDeleteButton(projectManager, projectTitle));
+        button.addEventListener("click", (event) => 
+            { handleProjectDeleteButton(event, projectManager, projectTitle) });
+    });
+
+    projectContainers.forEach((projectContainer) => {
+        projectContainer.addEventListener("click", () => 
+            { handleProjectClick(projectContainer, projectManager) });
     });
 }
 
@@ -68,9 +69,8 @@ function handleProjectEditConfirmButtonModeAdd(projectManager) {
     projectManager.addProject(project); // add
     render(projectManager); // render
     
-    // Clean input and rebind events to all project elements
+    // Clean input
     projectEditInput.value = "";
-    bindEventListenersToDynamicProjectElements(projectManager);
 }
 
 function handleProjectEditConfirmButtonModeEdit(projectManager) {
@@ -91,12 +91,11 @@ function handleProjectEditConfirmButtonModeEdit(projectManager) {
     projectEditContainer.setAttribute("data-project", projectNewTitle); // this matters on next edit
 
     // Re-render, clean & re-bind
-    render(projectManager);
+    render(projectManager); // render now does the re-bing
     projectEditInput.value = "";
-    bindEventListenersToDynamicProjectElements(projectManager);
 }
 
-function handleProjectEditButton(projectManager, projectTitle) {
+function handleProjectEditButton(event, projectManager, projectTitle) {
     const projectEditContainer = document.querySelector(".project-edit");
     projectEditContainer.classList.remove("project-edit_invisible");
     projectEditContainer.setAttribute("data-mode", "edit");
@@ -105,12 +104,21 @@ function handleProjectEditButton(projectManager, projectTitle) {
     const projectEditInput = document.querySelector(".project-edit__input");
     const project = projectManager.findProject(projectTitle);
     projectEditInput.value = project.title; // set input to old title to see what we are editing
+
+    event.stopPropagation(); // because project container is clickable as well
 }
 
-function handleProjectDeleteButton(projectManager, projectTitle) {
+function handleProjectDeleteButton(event, projectManager, projectTitle) {
     projectManager.deleteProject(projectTitle);
     render(projectManager); // re-render
-    bindEventListenersToDynamicProjectElements(projectManager); // re-bind
+
+    event.stopPropagation();
 }
 
-export default bindEventListenersToProjectElements;
+function handleProjectClick(projectContainer, projectManager) {
+    const projectTitle = projectContainer.getAttribute("data-project");
+    projectManager.activeProject = projectManager.findProject(projectTitle);
+    render(projectManager);
+}
+
+export { bindEventListenersToStaticProjectElements, bindEventListenersToDynamicProjectElements };

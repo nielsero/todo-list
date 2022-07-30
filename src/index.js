@@ -2,18 +2,18 @@ import "./style.css";
 import ProjectManager from "./modules/projectManager";
 import bindInitialEventListeners from "./modules/bindInitialEventListeners";
 import { render } from "./modules/render";
-import bindEventListenersToProjectElements from "./modules/bindEventListenersToProjectElements";
+import { bindEventListenersToStaticProjectElements } from "./modules/bindEventListenersToProjectElements";
+import { bindEventListenersToStaticTodoElements } from "./modules/bindEventListenersToTodoElements";
 import Project from "./modules/project";
 import TodoItem from "./modules/todoItem";
-import bindEventListenersToTodoElements from "./modules/bindEventListenersToTodoElements";
 
 function main() {
     const projectManager = new ProjectManager();
     setupMockProjectManager(projectManager);
     bindInitialEventListeners();
+    bindEventListenersToStaticProjectElements(projectManager);
+    bindEventListenersToStaticTodoElements(projectManager);
     render(projectManager);
-    bindEventListenersToProjectElements(projectManager);
-    bindEventListenersToTodoElements(projectManager);
 }
 
 function setupMockProjectManager(projectManager) {

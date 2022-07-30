@@ -1,6 +1,7 @@
 import { render } from "./render";
 import TodoItem from "./todoItem";
 import cleanTodoEditFormInputs from "../util/cleanTodoEditFormInputs";
+import saveProjectManager from "./saveProjectManager";
 
 function bindEventListenersToStaticTodoElements(projectManager) {
     const todoEditConfirmButton = document.querySelector(".todo-edit__confirm-button");
@@ -189,6 +190,7 @@ function handleTodoCheckBoxChecked(todoCheckbox, projectManager) {
     todo.toggleIsComplete();
 
     todoMain.classList.toggle("todo-main_checked");
+    saveProjectManager(projectManager);
 }
 
 export { bindEventListenersToStaticTodoElements , bindEventListenersToDynamicTodoElements };

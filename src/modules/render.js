@@ -2,10 +2,12 @@ import cleanContainer from "../util/cleanContainer";
 import appendChildren from "../util/appendChildren";
 import { bindEventListenersToDynamicProjectElements } from "./bindEventListenersToProjectElements";
 import { bindEventListenersToDynamicTodoElements } from "./bindEventListenersToTodoElements";
+import saveProjectManager from "./saveProjectManager";
 
 function render(projectManager) {
     renderProjectsFromProjectManager(projectManager);
     renderTodosFromProjectManager(projectManager);
+    saveProjectManager(projectManager);
 } 
 
 function renderProjectsFromProjectManager(projectManager) {
@@ -42,7 +44,7 @@ function renderTodosFromProjectManager(projectManager) {
     const project = projectManager.activeProject;
 
     if(project == null ) {
-        todosProjectTitle.textContent = "No projects available";
+        todosProjectTitle.textContent = "Todos";
         const emptyTodosMessage = createParagraph("Can't make todos, create a project first.");
         emptyTodosMessage.classList.add("todo__empty-todos-message");
         todosContainer.appendChild(emptyTodosMessage);

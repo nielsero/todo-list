@@ -12,3 +12,5 @@ function main() {
     bindEventListenersToStaticTodoElements(projectManager);
     render(projectManager);
 }
+
+main();
